@@ -1,4 +1,4 @@
-package org.catrobat.jira.timesheet.impl;
+package org.catrobat.jira.timesheet.impl.reference_files;
 
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 

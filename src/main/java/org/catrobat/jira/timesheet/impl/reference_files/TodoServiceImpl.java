@@ -1,4 +1,4 @@
-package org.catrobat.jira.timesheet.impl;
+package org.catrobat.jira.timesheet.impl.reference_files;
 
 import com.atlassian.activeobjects.external.ActiveObjects;
 

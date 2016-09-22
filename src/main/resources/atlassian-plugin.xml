@@ -32,10 +32,11 @@
 
     <ao key="ao-module">
         <description>The module configuring the Active Objects service used by this plugin</description>
-        <entity>org.catrobat.jira.timesheet.impl.Todo</entity>
+        <entity>org.catrobat.jira.timesheet.impl.reference_files.Todo</entity>
     </ao>
 
-    <servlet name="Todo List &amp; Add Servlet" class="org.catrobat.jira.timesheet.impl.TodoServlet"
+    <!--rest url: http://markus:2990/jira/plugins/servlet/todo/list -->
+    <servlet name="Todo List &amp; Add Servlet" class="org.catrobat.jira.timesheet.impl.reference_files.TodoServlet"
              key="todo-list">
         <description>A servlet to add and list todos</description>
         <url-pattern>/todo/list</url-pattern>
@@ -48,7 +49,7 @@
         <decription>Processes @Transactional annotations.</decription>
     </component>
 
-    <component key="todo-service" name="Todo Service" class="org.catrobat.jira.timesheet.impl.TodoServiceImpl"/>
+    <component key="todo-service" name="Todo Service" class="org.catrobat.jira.timesheet.impl.reference_files.TodoServiceImpl"/>
     <!-- end of transactional related interfaces -->
     <!-- end of component keys -->
 

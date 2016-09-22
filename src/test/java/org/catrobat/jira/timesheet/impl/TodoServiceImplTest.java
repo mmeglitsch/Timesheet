@@ -4,6 +4,8 @@ import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.activeobjects.test.TestActiveObjects;
 import net.java.ao.EntityManager;
 import net.java.ao.test.junit.ActiveObjectsJUnitRunner;
+import org.catrobat.jira.timesheet.impl.reference_files.Todo;
+import org.catrobat.jira.timesheet.impl.reference_files.TodoServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

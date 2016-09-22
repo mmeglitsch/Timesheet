@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.catroid</groupId>
     <artifactId>TimesheetPlugin</artifactId>
-    <version>1.0.777</version>
+    <version>1.1</version>
 
     <organization>
         <name>Catrobat</name>
