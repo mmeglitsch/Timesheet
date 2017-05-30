@@ -2,6 +2,24 @@
 
 var isMTSheetSelected;
 
+function initTeamMemberList(userInformation) {
+    for (var i = 0; i < userInformation.length; i++) {
+        var inactiveEndDate;
+        if (userInformation[i].inactiveEndDate == null || new Date(userInformation[i].inactiveEndDate).getTime() == new Date(0).getTime()) {
+            inactiveEndDate = "";
+        } else {
+            inactiveEndDate = (new Date(userInformation[i].inactiveEndDate)).toLocaleDateString("en-US");
+        }
+        var row = "<tr>" +
+            "<td headers='ti-users'>" + userInformation[i].userName +
+            "</td><td headers='ti-state'>" + userInformation[i].state +
+            "</td><td headers='ti-inactive-end-date'>" + inactiveEndDate +
+            "</td></tr>";
+        AJS.$("#team-information-table-content").append(row);
+    }
+    AJS.$("#team-information-table").trigger("update");
+}
+
 function isReadOnlyUser(userName, config) {
     if (config.readOnlyUsers) {
         var readOnlyUsers = config.readOnlyUsers.split(',');

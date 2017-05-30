@@ -110,6 +110,45 @@ public class UserRest {
     }
 
     @GET
+    @Path("/getTeamMemberStates")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTeamMembersState(@Context HttpServletRequest request) {
+        Response response = permissionService.checkUserPermission();
+        if (response != null) {
+            return response;
+        }
+
+        ApplicationUser user;
+        try {
+            user = permissionService.checkIfUserExists();
+        } catch (PermissionException e) {
+            return Response.status(Response.Status.UNAUTHORIZED).entity(e.getMessage()).build();
+        }
+
+        Set<Team> ownTeams = teamService.getTeamsOfUser(user.getName());
+
+        List<JsonTeamInformation> jsonUserStates = new ArrayList<>();
+        for (Timesheet timesheet : timesheetService.all()) {
+            Set<Team> otherTeams = teamService.getTeamsOfUser(timesheet.getUserKey());
+            otherTeams.retainAll(ownTeams);
+            if (otherTeams.size() > 0) {
+                JsonTeamInformation jsonTeamInformation = new JsonTeamInformation();
+                jsonTeamInformation.setUserName(timesheet.getUserKey());
+                jsonTeamInformation.setState(timesheet.getState());
+                TimesheetEntry latestInactiveEntry = timesheetEntryService.getLatestInactiveEntry(timesheet);
+                if (latestInactiveEntry != null && (timesheet.getState() == Timesheet.State.INACTIVE
+                        || timesheet.getState() == Timesheet.State.INACTIVE_OFFLINE)) {
+                    Date inactiveEndDate = timesheetEntryService.getLatestInactiveEntry(timesheet).getInactiveEndDate();
+                    jsonTeamInformation.setInactiveEndDate(inactiveEndDate);
+                }
+                jsonUserStates.add(jsonTeamInformation);
+            }
+        }
+
+        return Response.ok(jsonUserStates).build();
+    }
+
+    @GET
     @Path("/getUserInformation")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserInformation(@Context HttpServletRequest request) {

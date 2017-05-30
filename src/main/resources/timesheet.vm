@@ -81,6 +81,9 @@
         <li class="menu-item" id="coord_private_table">
             <a href="#tabs-team-information"><strong>Team Information</strong></a>
         </li>
+        <li class="menu-item" id="team_table">
+            <a href="#tabs-team-information-normal"><strong>Team Information</strong></a>
+        </li>
     </ul>
 
 #*content of the first tab "Timesheet"*#
@@ -116,6 +119,27 @@
         <form id="reset-timesheet-settings" class="aui">
             <input type="submit" value="View Own Timesheet" class="aui-button aui-button-primary">
         </form>
+    </div>
+
+    <div class="tabs-pane" id="tabs-team-information-normal">
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content">
+                    <table id="team-information-table-normal" class="aui aui-table-interactive aui-table-sortable">
+                        <thead>
+                        <tr>
+                            <th id="ti-users">Member</th>
+                            <th id="ti-state">State</th>
+                            <th id="ti-inactive-end-date">Inactive End Date</th>
+                        </tr>
+                        </thead>
+                        <tbody class="list" id="team-information-table-content">
+
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
     </div>
 
 #*   content of the tab "Team Information"*#

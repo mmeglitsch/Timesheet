@@ -26,8 +26,11 @@ AJS.toInit(function () {
 
     if (isCoordinator) {
         AJS.$("#coord_private_table").show();
+        AJS.$("#team_table").hide();
     } else {
         AJS.$("#coord_private_table").hide();
+        AJS.$("#team_table").show();
+        fetchTeamMembers();
     }
 
     if (isCoordinator || isSupervisor || isAdmin) {
@@ -78,6 +81,24 @@ AJS.toInit(function () {
 
     hideGoogleDocsImportButtonWhenDisabled();
 });
+
+function fetchTeamMembers() {
+    var userInformation = AJS.$.ajax({
+        type: 'GET',
+        url: restBaseUrl + 'user/getTeamMemberStates',
+        contentType: "application/json"
+    });
+
+    AJS.$.when(userInformation)
+        .done(initTeamMemberList)
+        .fail(function (error) {
+            AJS.messages.error({
+                title: 'There was an error while team user data.',
+                body: '<p>Reason: ' + error.responseText + '</p>'
+            });
+            console.log(error);
+        });
+}
 
 function hideGoogleDocsImportButtonWhenDisabled() {
     AJS.$.ajax({
