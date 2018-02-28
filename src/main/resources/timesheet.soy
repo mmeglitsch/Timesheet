@@ -18,6 +18,7 @@
     <span class="th partner" style="display:none">Partner (PP)</span>
     <span class="th ticket">Jira Ticket ID</span>
     <span class="th description">Task Description</span>
+    <span class="th teamroom">Teamroom</span>
     <span class="th"></span>
   </div>
 {/template}
@@ -44,6 +45,18 @@
     <span class="td partner" >{$entry.partner}</span>
     <span class="td ticket"><a target="_blank" href="">{$entry.ticketID}</a></span>
     <span class="td desc">{$entry.description}</span>
+    <span class="td teamroom"></span>
+    
+    {if ($entry.teamroomNew) == true}
+      <span class="td teamroom">
+        <input class="teamroom_ checkbox" type="checkbox" name="teamroomNew" id="teamroomCheckbox" checked/>
+      </span>
+    {else}
+      <span class="td teamroom">
+        <input class="teamroom_ checkbox" type="checkbox" name="teamroomNew" id="teamroomCheckbox"/>
+      </span>
+    {/if}
+    
     <span class="td save">
       <button class="aui-button aui-button-subtle edit">
         {call aui.icons.icon}
@@ -106,6 +119,11 @@
     <span class="td description">
       <input class="description_ text" type="text" placeholder="a short task description" value="{$entry.description}"/>
     </span>
+    
+    <span class="td teamroom">
+      <input class="teamroom_ checkbox" type="checkbox" name="teamroomNew" id="teamroomCheckbox" checked/>
+    </span>
+    
     <span class="td elements">
       <button class="aui-button aui-button-subtle save">
         {call aui.icons.icon}
@@ -116,4 +134,24 @@
       <span class="aui-icon aui-icon-wait">Loading...</span>
     </span>
   </form>
+  
+  
+<script type="text/javascript">
+{literal}
+     
+     $('#teamroomCheckbox').change(function(){
+     alert("checkbox changed");
+     
+     if ($(this).is(':checked')) {
+        $(this).attr('value', true);
+        alert($(this).val());
+     } else {
+        $(this).attr('value', false);
+        alert($(this).val());
+     }
+     alert($('#teamroomCheckbox').val());
+});
+{/literal}
+</script>
+  
 {/template}

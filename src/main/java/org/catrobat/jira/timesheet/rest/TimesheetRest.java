@@ -503,7 +503,7 @@ public class TimesheetRest {
         try {
             newEntry = entryService.add(sheet, entry.getBeginDate(), entry.getEndDate(), category,
                     entry.getDescription(), entry.getPauseMinutes(), team, entry.IsGoogleDocImport(),
-                    entry.getInactiveEndDate(), entry.getTicketID(), entry.getPairProgrammingUserName());
+                    entry.getInactiveEndDate(), entry.getTicketID(), entry.getPairProgrammingUserName(), entry.getTeamroomNew());
         } catch (ServiceException e) {
             return Response.status(Response.Status.FORBIDDEN).entity(e.getMessage()).build();
         }
@@ -611,7 +611,7 @@ public class TimesheetRest {
 
                 TimesheetEntry newEntry = entryService.add(sheet, entry.getBeginDate(), entry.getEndDate(), category,
                         entry.getDescription(), entry.getPauseMinutes(), team, entry.IsGoogleDocImport(),
-                        entry.getInactiveEndDate(), entry.getTicketID(), entry.getPairProgrammingUserName());
+                        entry.getInactiveEndDate(), entry.getTicketID(), entry.getPairProgrammingUserName(), entry.getTeamroomNew());
                 entry.setEntryID(newEntry.getID());
                 errorMap.get("correct").add(entry);
             } catch (ParseException | ServiceException | PermissionException e) {
@@ -774,7 +774,8 @@ public class TimesheetRest {
         try {
             entryService.edit(entryID, entry.getTimeSheet(), jsonEntry.getBeginDate(), jsonEntry.getEndDate(), category,
                     jsonEntry.getDescription(), jsonEntry.getPauseMinutes(), team, jsonEntry.IsGoogleDocImport(),
-                    jsonEntry.getInactiveEndDate(), jsonEntry.getTicketID(), jsonEntry.getPairProgrammingUserName());
+                    jsonEntry.getInactiveEndDate(), jsonEntry.getTicketID(), jsonEntry.getPairProgrammingUserName(),
+                    jsonEntry.getTeamroomNew());
         } catch (ServiceException e) {
             return Response.status(Response.Status.CONFLICT).entity(e.getMessage()).build();
         }

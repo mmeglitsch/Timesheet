@@ -42,6 +42,9 @@ public interface TimesheetEntry extends Entity {
 
     String getDescription();
     void setDescription(String description);
+    
+    boolean getTeamroomNew();
+    void setTeamroomNew(boolean teamroomNew);
 
     int getPauseMinutes();
     void setPauseMinutes(int pause);

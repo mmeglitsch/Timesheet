@@ -42,6 +42,11 @@ public class TimesheetEntryImpl{
         entry.setPauseMinutes(pause);
         entry.setDurationMinutes(getDuration());
     }
+    
+//    public void setTeamroomNew(boolean teamroomNew) {
+//    	entry.setTeamroomNew(teamroomNew);
+//    }
+    
 
     private int getDuration() {
 

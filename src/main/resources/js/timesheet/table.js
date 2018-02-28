@@ -348,7 +348,8 @@ function prepareForm(entry, timesheetData, isModified) {
         ticketSelect: row.find('input.ticket_'),
         categorySelect: row.find('span.category_'),
         partnerSelect: row.find('span.partner_'),
-        teamSelect: row.find('select.team')
+        teamSelect: row.find('select.team'),
+        teamroomCheckbox: row.find('input.teamroom_')
     };
 
     form.ticketSelect.show();
@@ -1125,6 +1126,7 @@ function submit(timesheetData, saveOptions, form, existingEntryID,
     var categoryIndex = form.categorySelect.val();
     var is_inactive_entry = false;
 
+
     if ((date == "") || (!isValidDate(validDateFormat))) {
         date = new Date().toJSON().slice(0, 10);
     }
@@ -1220,6 +1222,9 @@ function submit(timesheetData, saveOptions, form, existingEntryID,
             "border-color": "#DCDCDC"
         });
     }
+    
+    alert("on submit! form.teamroomCheckbox.val();");
+    alert(form.teamroomCheckbox.val());
 
     timesheetEntry = {
         beginDate: beginDate,
@@ -1231,9 +1236,13 @@ function submit(timesheetData, saveOptions, form, existingEntryID,
         categoryID: form.categorySelect.val(),
         isGoogleDocImport: existingIsGoogleDocImportValue,
         partner: form.partnerSelect.val(),
-        ticketID: form.ticketSelect.val()
+        ticketID: form.ticketSelect.val(),
+        teamroomNew: form.teamroomCheckbox.val()
     };
-
+    
+    alert("timesheetEntry.teamroomNew is:");
+    alert(timesheetEntry.teamroomNew);
+    
     if (existingEntryID !== "new-id") {
         timesheetEntry.entryID = existingEntryID;
     }

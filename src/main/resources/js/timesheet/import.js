@@ -446,7 +446,8 @@ function parseEntryFromGoogleDocRow(row, timesheetData) {
         isGoogleDocImport: true,
         ticketID: "",
         partner: "",
-        inactiveEndDate: beginDate
+        inactiveEndDate: beginDate,
+        teamroomNew: false
     };
 }
 

@@ -56,6 +56,8 @@ public final class JsonTimesheetEntry {
     @XmlElement
     private String description;
     @XmlElement
+    private boolean teamroomNew;
+    @XmlElement
     private int teamID;
     @XmlElement
     private int categoryID;
@@ -77,6 +79,7 @@ public final class JsonTimesheetEntry {
         this.beginDate = timesheetEntry.getBeginDate();
         this.endDate = timesheetEntry.getEndDate();
         this.pauseMinutes = timesheetEntry.getPauseMinutes();
+        this.teamroomNew = timesheetEntry.getTeamroomNew();
         // FIXME: team and category shall never be null
         if (timesheetEntry.getTeam() != null) {
             this.teamID = timesheetEntry.getTeam().getID();
@@ -96,6 +99,7 @@ public final class JsonTimesheetEntry {
             this.ticketID = timesheetEntry.getJiraTicketID();
             this.partner = timesheetEntry.getPairProgrammingUserName();
             this.isGoogleDocImport = timesheetEntry.getIsGoogleDocImport();
+            this.teamroomNew = timesheetEntry.getTeamroomNew();
         } else {
             this.entryID = 0;
             this.inactiveEndDate = null;
@@ -103,6 +107,7 @@ public final class JsonTimesheetEntry {
             this.ticketID = null;
             this.partner = null;
             this.isGoogleDocImport = false;
+            this.teamroomNew = false;
         }
     }
 
@@ -192,6 +197,14 @@ public final class JsonTimesheetEntry {
         this.isGoogleDocImport = isGoogleDocImport;
     }
 
+    public boolean getTeamroomNew() {
+    	return teamroomNew;
+    }
+    
+    public void setTeamroomNew (boolean teamroomNew) {
+    	this.teamroomNew = teamroomNew;
+    }
+    
     public String getCategoryName() {return categoryName;}
 
     public void setCategoryName(String categoryName) {this.categoryName = categoryName;}
@@ -212,6 +225,7 @@ public final class JsonTimesheetEntry {
         if (teamID != that.teamID) return false;
         if (categoryID != that.categoryID) return false;
         if (isGoogleDocImport != that.isGoogleDocImport) return false;
+        if (teamroomNew != that.teamroomNew) return false;
         if (!beginDate.equals(that.beginDate)) return false;
         if (!endDate.equals(that.endDate)) return false;
         if (!inactiveEndDate.equals(that.inactiveEndDate)) return false;
@@ -253,6 +267,7 @@ public final class JsonTimesheetEntry {
                 ", teamID=" + teamID +
                 ", categoryID=" + categoryID +
                 ", isGoogleDocImport=" + isGoogleDocImport +
+                ", teamroom=" + teamroomNew +
                 '}';
     }
 }
