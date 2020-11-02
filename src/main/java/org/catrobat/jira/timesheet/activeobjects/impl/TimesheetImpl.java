@@ -41,4 +41,23 @@ public class TimesheetImpl {
 
         return entries.get(0);
     }
+
+    public float getTotalHours()
+    {
+        float sumTotalMinutes =0;
+        TimesheetEntry[] TimeSheetEntryiesArray = timesheet.getEntries();
+
+        if (TimeSheetEntryiesArray == null || TimeSheetEntryiesArray.length == 0) {
+            return 0;
+        }
+
+        for (TimesheetEntry entry : TimeSheetEntryiesArray)
+        {
+            sumTotalMinutes = sumTotalMinutes + (entry.getDurationMinutes() - entry.getPauseMinutes());
+        }
+
+        return (sumTotalMinutes / 60);
+
+    }
+
 }
