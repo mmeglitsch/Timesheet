@@ -4,10 +4,12 @@ import com.atlassian.activeobjects.external.ActiveObjects;
 import org.catrobat.jira.timesheet.activeobjects.*;
 import org.catrobat.jira.timesheet.rest.json.JsonTimesheet;
 import org.catrobat.jira.timesheet.rest.json.JsonTimesheetEntry;
+import org.catrobat.jira.timesheet.services.TimesheetEntryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,10 +18,12 @@ import java.util.List;
 public class DatabaseUtil {
 
     private final ActiveObjects ao;
+    private final TimesheetEntryService timesheetEntryService;
     private static final Logger logger = LoggerFactory.getLogger(DatabaseUtil.class);
 
-    public DatabaseUtil(ActiveObjects ao) {
+    public DatabaseUtil(ActiveObjects ao, TimesheetEntryService timesheetEntryService) {
         this.ao = ao;
+        this.timesheetEntryService = timesheetEntryService;
     }
 
     public void resetTimesheets() {
@@ -41,6 +45,7 @@ public class DatabaseUtil {
         ao.deleteWithSQL(Config.class, "ID > ?", 0);
         ao.deleteWithSQL(Group.class, "ID > ?", 0);
         ao.deleteWithSQL(Scheduling.class, "ID > ?", 0);
+        ao.deleteWithSQL(Monitoring.class, "ID > ?", 0);
 
         logger.warn("All timesheet tables has been deleted!");
     }

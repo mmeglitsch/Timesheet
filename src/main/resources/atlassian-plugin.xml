@@ -96,6 +96,7 @@
 
     <web-resource key="user-information-resources" name="User Information Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:aui-select</dependency>
         <dependency>com.atlassian.auiplugin:aui-select2</dependency>
         <dependency>com.atlassian.auiplugin:aui-table-sortable</dependency>
 
@@ -203,6 +204,7 @@
         <entity>org.catrobat.jira.timesheet.activeobjects.Group</entity>
         <entity>org.catrobat.jira.timesheet.activeobjects.TimesheetAdmin</entity>
         <entity>org.catrobat.jira.timesheet.activeobjects.Scheduling</entity>
+        <entity>org.catrobat.jira.timesheet.activeobjects.Monitoring</entity>
         <entity>org.catrobat.jira.timesheet.activeobjects.AllowedModUsers</entity>
     </ao>
 
